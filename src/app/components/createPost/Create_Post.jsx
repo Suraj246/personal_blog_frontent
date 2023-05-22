@@ -40,7 +40,7 @@ const Create_Post = () => {
             );
             if (data) {
                 localStorage.setItem("blogId", data.newPost._id)
-                // window.location.reload()
+                window.location.reload()
             }
             else {
                 return false;
@@ -50,20 +50,17 @@ const Create_Post = () => {
         }
     };
 
-    if (typeof window !== "undefined") {
-        var userId = JSON.parse(localStorage.getItem("blog userData"))
-    }
-    if (typeof window !== "undefined") {
-        var blogId = localStorage.getItem("blogId") || ''
-
-    }
+    // if (typeof window !== "undefined") {
+    //     var userId = JSON.parse(localStorage.getItem("blog userData"))
+    // }
+    // if (typeof window !== "undefined") {
+    //     var blogId = localStorage.getItem("blogId") || ''
+    // }
 
     useEffect(() => {
-        // const blogId = localStorage.getItem("blogId") || ''
+        const blogId = localStorage.getItem("blogId") || ''
 
-        // if (typeof window !== "undefined") {
-        //     var userId = JSON.parse(localStorage.getItem("blog userData"))
-        // }
+        var userId = JSON.parse(localStorage.getItem("blog userData"))
 
         axios.post(`${api}/store-post-to-each-user`, {
             userId, blogId

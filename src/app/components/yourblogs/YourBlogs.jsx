@@ -6,10 +6,17 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Loading from '@/app/Loading';
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { api } from '@/app/apiEndpoint'
+import dynamic from 'next/dynamic';
 
+const ReactQuill = dynamic(
+    () => {
+        return import('react-quill');
+    },
+    { ssr: false }
+);
 const YourBlogs = () => {
     const [blogs, setBlogs] = useState([])
     const [updatePost, setUpdatePost] = useState([])

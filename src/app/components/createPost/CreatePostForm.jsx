@@ -1,10 +1,16 @@
 'use client'
 import React from 'react'
 import style from './createPost.module.scss'
-
-import ReactQuill from "react-quill";
+import dynamic from 'next/dynamic';
+// import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
+const ReactQuill = dynamic(
+    () => {
+        return import('react-quill');
+    },
+    { ssr: false }
+);
 const CreatePostForm = ({ input, value, setValue, inputHandler, handleSubmit, setImage }) => {
 
     const modules = {
@@ -20,8 +26,10 @@ const CreatePostForm = ({ input, value, setValue, inputHandler, handleSubmit, se
                 { indent: "+1" },
             ],
             ["link", "image", "video"],
-            ['clean']
-        ]
+            ['clean'],
+
+        ],
+
     }
 
 
@@ -39,6 +47,7 @@ const CreatePostForm = ({ input, value, setValue, inputHandler, handleSubmit, se
             <ReactQuill theme="snow" value={value} onChange={setValue}
                 modules={modules} className={style.editor}
             />
+
             <br />
             <br />
             <br />

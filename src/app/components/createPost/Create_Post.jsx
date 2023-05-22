@@ -40,7 +40,7 @@ const Create_Post = () => {
             );
             if (data) {
                 localStorage.setItem("blogId", data.newPost._id)
-                window.location.reload()
+                // window.location.reload()
             }
             else {
                 return false;

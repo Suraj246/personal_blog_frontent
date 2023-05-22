@@ -24,6 +24,7 @@ const CreatePostForm = ({ input, value, setValue, inputHandler, handleSubmit, se
         ]
     }
 
+
     return (
         <form onSubmit={handleSubmit}>
             <input type="text" name="title"

@@ -1,0 +1,92 @@
+@import '../../variables.scss';
+
+
+
+.header {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background: $bg-color-header;
+    color: $txt-color;
+
+    .h1 {
+        font-size: 2rem;
+        text-transform: uppercase;
+        color: $txt-color;
+        text-decoration: none;
+
+        @media screen and (max-width:457px) {
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+        }
+    }
+
+
+    .user_container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        position: relative;
+
+        .dropdown_container {
+            @include grid;
+            padding: 1rem;
+            position: absolute;
+            top: 130%;
+            right: 0%;
+            background-color: $bg-color-header;
+            width: 100%;
+            font-size: 1rem;
+            text-transform: uppercase;
+
+            .a {
+                color: $txt-color;
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+            .logout {
+                cursor: pointer;
+                color: $txt-color;
+            }
+        }
+
+        .theme_color button {
+            background-color: transparent;
+            color: $txt-color;
+            font-size: 1.5rem;
+            border: none;
+            outline: none;
+        }
+
+    }
+}
+
+.header.light {
+    color: $txt-color-light;
+    background-color: $bg-color-light;
+
+
+    .h1 {
+        color: $txt-color-light;
+    }
+
+    .dropdown_container {
+        background-color: $bg-color-light;
+
+        .a {
+            color: $txt-color-light;
+        }
+
+        .logout {
+            color: $txt-color-light;
+        }
+    }
+
+    .theme_color button {
+        color: $txt-color-light;
+    }
+}

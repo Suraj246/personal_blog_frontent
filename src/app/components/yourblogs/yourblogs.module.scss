@@ -1,0 +1,47 @@
+@import '../../variables.scss';
+
+.user_blogs_page {
+    padding: 3rem;
+    // background-color: $headerColor;
+
+    .user_blog_container {
+        @include flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 1rem;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        padding: 1rem;
+        font-size: 1.4rem;
+        font-weight: 200;
+
+        img {
+            width: 10%;
+        }
+
+        .title_container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            width: 70%;
+
+            .title {
+                width: 80%
+            }
+
+            .date {
+                width: fit-content;
+            }
+        }
+
+
+    }
+
+    .edit_delete_container {
+        @include flex;
+        gap: 1rem;
+
+        span {
+            cursor: pointer;
+        }
+    }
+}

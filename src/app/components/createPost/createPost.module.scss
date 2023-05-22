@@ -1,0 +1,41 @@
+@import '../../variables.scss';
+
+
+.create_blog_page {
+    padding: 2rem;
+    @include grid;
+    place-items: center;
+
+    .create_blog_title {
+        font-size: 2rem;
+        font-weight: 500
+    }
+
+    form {
+        @include grid;
+        width: 60%;
+
+        input {
+            line-height: 2rem;
+            padding: 0 1rem;
+            font-size: 1rem;
+            outline: none;
+        }
+
+
+        .btn {
+            padding: .3rem;
+            background-color: transparent;
+            border: none;
+            background: $create_blog_btn;
+            color: $text_btn;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .editor {
+            margin-bottom: 3rem;
+        }
+
+    }
+}

@@ -1,0 +1,30 @@
+// header 
+// dark mode
+$bg-color-header: #252525;
+$txt-color: #FFFFFF;
+$bg-linear-gradient: linear-gradient(to right, #434343 0%, black 100%);
+
+// light mode
+$bg-color-light: #FFFFFF;
+$txt-color-light: #252525;
+$bg-linear-gradient-light: #FFFFFF;
+
+
+
+@mixin grid {
+    display: grid;
+    gap: 1rem;
+}
+
+@mixin flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+// create blog page
+$create_blog_btn: rgb(71, 212, 223);
+$text_btn: #ffffffff;
+
+// your blogs
+$headerColor: #ffffffff;

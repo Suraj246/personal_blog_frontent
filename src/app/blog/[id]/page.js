@@ -6,9 +6,6 @@ import style from './blogScreen.module.scss'
 import Loading from '@/app/Loading';
 import { api } from '@/app/apiEndpoint'
 
-export const metadata = {
-    title: 'Blog',
-}
 
 const page = ({ params }) => {
     const id = params.id

@@ -1,12 +1,5 @@
 import React from 'react'
-import Login from '../components/login/login'
-
-
-export const metadata = {
-    title: 'Create Blog',
-}
-
-
+import Login from '../components/login/Login'
 const page = () => {
     return (
         <div>

@@ -78,7 +78,6 @@ const Header = () => {
                         }
                     </>
                 }
-                <i class="fa-duotone fa-brightness"></i>
                 <div className={style.theme_color}>
                     {theme === 'light' ?
                         <button onClick={() => {

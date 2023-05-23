@@ -5,11 +5,10 @@ import style from './yourblogs.module.scss'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import Loading from '@/app/Loading';
-// import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { api } from '@/app/apiEndpoint'
 import dynamic from 'next/dynamic';
+import MyBlogs from './MyBlogs';
 
 const ReactQuill = dynamic(
     () => {
@@ -28,22 +27,23 @@ const YourBlogs = () => {
     const handleShow = () => setShow(true);
 
 
-    const getBlogsData = async () => {
-        const userId = JSON.parse(localStorage.getItem("blog userData"))
-        try {
-            const { data } = await axios.post(`${api}/get-user`, userId);
-            if (data) {
-                setBlogs(data.data.blogs)
-            }
-            else {
+
+
+    useEffect(() => {
+        const getBlogsData = async () => {
+            const userId = JSON.parse(localStorage.getItem("blog userData"))
+            try {
+                const { data } = await axios.post(`${api}/get-user`, userId);
+                if (data) {
+                    setBlogs(data.data.blogs)
+                }
+                else {
+                    return false;
+                }
+            } catch (ex) {
                 return false;
             }
-        } catch (ex) {
-            // console.log(ex);
-            return false;
-        }
-    };
-    useEffect(() => {
+        };
         getBlogsData()
     }, [blogs])
 
@@ -109,23 +109,8 @@ const YourBlogs = () => {
 
     return (
         <div className={style.user_blogs_page}>
+            <MyBlogs blogs={blogs} updateBlog={updateBlog} deleteBlog={deleteBlog} />
 
-            {blogs.length === 0 ? <Loading /> : blogs.map((elem, idx) => {
-                return (
-                    <div className={style.user_blog_container} key={idx}>
-
-                        <img src={`${api}/uploads/${elem?.image}`} alt={elem?.title} />
-                        <div className={style.title_container}>
-                            <span>{elem?.title}</span>
-                            <span>{elem?.createdAt.slice(0, 10)}</span>
-                        </div>
-                        <div className={style.edit_delete_container}>
-                            <span onClick={() => updateBlog(elem)}>edit</span>
-                            <span onClick={() => deleteBlog(idx)}>delete</span>
-                        </div>
-                    </div>
-                )
-            })}
 
             <Modal show={show} onHide={handleClose}
                 size="lg"
@@ -152,19 +137,11 @@ const YourBlogs = () => {
                     </Form.Group>
 
                     <Form.Label htmlFor="content">Content</Form.Label>
-                    {/* 
-                    <textarea name="content" cols={102} rows={10}
-                        value={updatePost.content}
-                        onChange={handleChange}
-                    /> */}
 
                     <ReactQuill theme="snow"
                         name="content"
                         value={value}
-                        // onChange={setValue}
-                        // onChange={(e) => setUpdatePost(e.target.value)}
                         onChange={setValue}
-
                         modules={modules}
                     />
                 </Modal.Body>

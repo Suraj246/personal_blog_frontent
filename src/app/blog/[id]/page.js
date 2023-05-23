@@ -5,7 +5,7 @@ import axios from 'axios'
 import style from './blogScreen.module.scss'
 import Loading from '@/app/Loading';
 import { api } from '@/app/apiEndpoint'
-
+import Image from 'next/image'
 
 const page = ({ params }) => {
     const id = params.id
@@ -55,8 +55,7 @@ const page = ({ params }) => {
             {blog?.length === 0 ? <Loading /> :
                 <div className={style.blog_container}>
                     <span className={style.title}>{blog?.title}</span>
-                    <img src={`${api}/uploads/${blog?.image}`} alt={blog?.title} loading='lazy' />
-                    {/* <span className={style.content}>{blog?.content}</span> */}
+                    <Image src={`${api}/uploads/${blog?.image}`} alt={blog?.title} width={900} height={900} />
                     <div dangerouslySetInnerHTML={{ __html: blog?.content }}
                         className={style.content}
                     />

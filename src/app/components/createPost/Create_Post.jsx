@@ -50,12 +50,6 @@ const Create_Post = () => {
         }
     };
 
-    // if (typeof window !== "undefined") {
-    //     var userId = JSON.parse(localStorage.getItem("blog userData"))
-    // }
-    // if (typeof window !== "undefined") {
-    //     var blogId = localStorage.getItem("blogId") || ''
-    // }
 
     useEffect(() => {
         const blogId = localStorage.getItem("blogId") || ''

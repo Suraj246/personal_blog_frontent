@@ -56,7 +56,12 @@ const Create_Post = () => {
         // window.location.reload()
     };
 
-    const blogId = localStorage.getItem('blogId') ? localStorage.getItem('blogId') : ''
+    if (typeof window !== "undefined") {
+
+        var blogId = localStorage.getItem('blogId') ? localStorage.getItem('blogId') : ''
+    }
+
+
     const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : []
     var userId = userData?.userId
 

@@ -9,22 +9,22 @@ const nextConfig = {
     //     ],
     // },
     images: {
-        // remotePatterns: [
-        //     {
-        //         protocol: 'https',
-        //         hostname: 'personal-blog-backend.onrender.com',
-        //         port: '',
-        //         pathname: '/uploads/**',
-        //     },
-        // ],
         remotePatterns: [
             {
-                protocol: 'http',
-                hostname: 'localhost',
-                port: '4000',
+                protocol: 'https',
+                hostname: 'personal-blog-backend.onrender.com',
+                port: '',
                 pathname: '/uploads/**',
             },
         ],
+        // remotePatterns: [
+        //     {
+        //         protocol: 'http',
+        //         hostname: 'localhost',
+        //         port: '4000',
+        //         pathname: '/uploads/**',
+        //     },
+        // ],
     },
 }
 

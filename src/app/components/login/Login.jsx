@@ -1,14 +1,19 @@
 'use client'
 import React, { useState } from 'react'
 import style from './login.module.scss'
-import axios from 'axios'
 import { useRouter } from 'next/navigation'
-import { api } from '@/app/apiEndpoint'
+import { useDispatch, useSelector } from 'react-redux'
+import { userLoginApi } from '@/app/redux/actions/userActions'
+import Link from 'next/link'
 
 const Login = () => {
     const router = useRouter()
+    const dispatch = useDispatch()
+    const loginApi = useSelector(state => state.currentUser)
+    const { error, user, loading, success } = loginApi
+    console.log(loginApi)
+
     const [input, setInput] = useState({ email: "", password: "" });
-    const [loading, setLoading] = useState(false)
 
     const inputHandler = (e) => {
         const value = e.target.value;
@@ -24,25 +29,10 @@ const Login = () => {
             alert("Please enter a valid email or password")
             return
         }
-        try {
-            const { data } = await axios.post(`${api}/login`, {
-                ...input,
-            },
-            );
-            if (data) {
-                setLoading(true)
-                localStorage.setItem("blog userData", JSON.stringify(data));
-                router.push("/")
-            }
-            else {
-                return false;
-            }
-            // setLoading(false)
-        } catch (ex) {
-            if (ex?.response?.status === 404) {
-                alert("user does not exit")
-            }
-            // console.log(ex);
+        dispatch(userLoginApi(input))
+        if (success) {
+            router.push("/")
+
         }
     };
     return (
@@ -54,6 +44,7 @@ const Login = () => {
                             Authorized User Login
                         </span>
                     </div>
+                    {error && <span>{error}</span>}
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <input
                             type="email"
@@ -81,6 +72,10 @@ const Login = () => {
                             <button type="submit" value="Submit" className={style.signUp}>LOGIN</button>
                         }
                     </form>
+                    <div className="signup-btn-container">
+                        <span>Already have an account ?</span>
+                        <Link href="/signup" className={style.signUp}> Register</Link>
+                    </div>
                 </div>
 
             </div>

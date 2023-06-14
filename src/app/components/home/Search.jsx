@@ -3,10 +3,11 @@ import React from 'react'
 import style from "./home.module.scss"
 
 const Search = ({ input, setInput }) => {
+    console.log(input)
     return (
         <input type="text"
             className={style.search}
-            placeholder='Search Blog'
+            placeholder='Search Post'
             value={input}
             onChange={(e) => setInput(e.target.value)}
         />

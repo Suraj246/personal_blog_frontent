@@ -1,12 +1,10 @@
 @import '../../variables.scss';
 
-.user_blogs_page {
-    padding: 3rem;
-    // background-color: $headerColor;
+.user_blogs {
+    padding: 3rem 0;
 
     .user_blog_container {
         @include flex;
-        justify-content: space-around;
         align-items: center;
         gap: 1rem;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -15,7 +13,7 @@
         font-weight: 200;
 
         img {
-            width: 10%;
+            width: 50%;
         }
 
         .title_container {
@@ -25,7 +23,7 @@
             width: 70%;
 
             .title {
-                width: 80%
+                width: 80%;
             }
 
             .date {

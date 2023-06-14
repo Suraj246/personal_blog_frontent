@@ -4,26 +4,30 @@
 
 .header {
     display: flex;
-    gap: 1rem;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1rem;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    background: $bg-color-header;
-    color: $txt-color;
+    justify-content: center;
+    padding: 2rem;
+    background: #aa4728;
+    color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
 
-    .h1 {
-        font-size: 2rem;
-        text-transform: uppercase;
-        color: $txt-color;
-        text-decoration: none;
+    ul {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
 
-        @media screen and (max-width:457px) {
-            font-size: 1.2rem;
-            margin-top: 0.2rem;
+        li {
+            list-style: none;
+            font-size: 1.3rem;
+        }
+
+        .login {
+            padding: 0.2rem 1rem;
+            background-color: #72fec1;
+            color: #000;
         }
     }
-
 
     .user_container {
         display: flex;
@@ -31,62 +35,44 @@
         gap: 1rem;
         position: relative;
 
+        .profile_container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .img {
+                width: 100%;
+                height: 5vh;
+                object-fit: cover;
+                border-radius: 30px;
+            }
+        }
+
         .dropdown_container {
             @include grid;
             padding: 1rem;
             position: absolute;
-            top: 130%;
+            top: 110%;
             right: 0%;
-            background-color: $bg-color-header;
-            width: 100%;
+            background: #fff;
+            width: max-content;
             font-size: 1rem;
             text-transform: uppercase;
+            border: 1px #72fec1 solid;
 
             .a {
-                color: $txt-color;
+                color: #000;
                 cursor: pointer;
                 text-decoration: none;
             }
 
             .logout {
                 cursor: pointer;
-                color: $txt-color;
+                color: #000;
             }
         }
 
-        .theme_color button {
-            background-color: transparent;
-            color: $txt-color;
-            font-size: 1.5rem;
-            border: none;
-            outline: none;
-        }
-
-    }
-}
-
-.header.light {
-    color: $txt-color-light;
-    background-color: $bg-color-light;
 
 
-    .h1 {
-        color: $txt-color-light;
-    }
-
-    .dropdown_container {
-        background-color: $bg-color-light;
-
-        .a {
-            color: $txt-color-light;
-        }
-
-        .logout {
-            color: $txt-color-light;
-        }
-    }
-
-    .theme_color button {
-        color: $txt-color-light;
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import YourBlogs from '../components/yourblogs/YourBlogs'
+import MyBlogs from '../components/yourblogs/MyBlogs'
 
 export const metadata = {
     title: 'Your Blogs',
@@ -9,7 +9,7 @@ export const metadata = {
 const page = () => {
     return (
         <div>
-            <YourBlogs />
+            <MyBlogs />
         </div>
     )
 }

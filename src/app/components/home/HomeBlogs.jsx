@@ -87,7 +87,7 @@ const HomeBlogs = () => {
                             return (
                                 <Link href={`/blog/${item?._id}`} className={style.link_blog} key={id}>
                                     <div className={style.img_container}>
-                                        <Image src={`${api}/uploads/${item?.image}`} className={style.img} alt={item?.title} width={100} height={100} />
+                                        <Image src={`${api}/uploads/${item?.image}`} className={style.img} alt={item?.title} width={700} height={100} />
                                     </div>
                                     <div className={style.title_container}>
                                         <span className={style.category}>{item?.category}</span>

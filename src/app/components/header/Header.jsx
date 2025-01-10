@@ -42,7 +42,7 @@ const Header = () => {
         // updateUserData()
         setUserName(userData?.username)
 
-    }, [])
+    }, [user])
     return (
         <header className={style.header}>
 

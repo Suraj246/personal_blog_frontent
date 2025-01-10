@@ -3,15 +3,14 @@ import React, { useState } from 'react'
 import style from './login.module.scss'
 import { useRouter } from 'next/navigation'
 import { useDispatch, useSelector } from 'react-redux'
-import { userLoginApi } from '@/app/redux/actions/userActions'
 import Link from 'next/link'
+import { userLoginApi } from '@/app/redux/slices/userLoginSlice'
 
 const Login = () => {
     const router = useRouter()
     const dispatch = useDispatch()
     const loginApi = useSelector(state => state.currentUser)
-    const { error, user, loading, success } = loginApi
-    console.log(loginApi)
+    const { error, status } = loginApi
 
     const [input, setInput] = useState({ email: "", password: "" });
 
@@ -30,10 +29,13 @@ const Login = () => {
             return
         }
         dispatch(userLoginApi(input))
-        if (success) {
-            router.push("/")
+            .then((res) => {
+                if (res.payload.message === "login successful") {
+                    router.push('/')
+                }
+                return
+            })
 
-        }
     };
     return (
         <div className={style.sing_up_page}>
@@ -44,7 +46,7 @@ const Login = () => {
                             Authorized User Login
                         </span>
                     </div>
-                    {error && <span>{error}</span>}
+                    {error && <span className='text-red-500'>incorrect login details</span>}
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <input
                             type="email"
@@ -64,7 +66,7 @@ const Login = () => {
                             value={input.password}
                             onChange={inputHandler}
                         />
-                        {loading === true ?
+                        {status === "success" ?
                             <button type="submit" value="Submit" className={style.signUp}>
                                 <div className={style.lds}><div></div><div></div><div></div><div></div></div>
                             </button>

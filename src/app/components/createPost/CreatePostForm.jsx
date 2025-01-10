@@ -5,8 +5,8 @@ import dynamic from 'next/dynamic';
 // import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch } from 'react-redux';
-import { updateSingleBlogsApi } from '@/app/redux/actions/blogActions';
 import { useRouter } from 'next/navigation';
+import { updateSingleBlogsApi } from '@/app/redux/slices/blogFormSlice';
 
 const ReactQuill = dynamic(
     () => {
@@ -16,12 +16,13 @@ const ReactQuill = dynamic(
 );
 
 
-const CreatePostForm = ({ category, setCategory, userBlogData, setInput, input, value, setValue, inputHandler, handleSubmit, setImage, loading }) => {
+const CreatePostForm = ({ category, setCategory, updateBlogDetails, setInput, input, value, setValue, inputHandler, handleSubmit, setImage, status }) => {
     const router = useRouter()
     const dispatch = useDispatch()
-
+    console.log(updateBlogDetails?._id)
     const [isActive, setIsActive] = useState(false)
-    const unique = ["lifestyle", "science", "history", "technology"]
+    const unique = ["react", "nextjs", "nodejs", "css"]
+
     const saveUpdateBlog = () => {
         const { title } = input
 
@@ -32,10 +33,11 @@ const CreatePostForm = ({ category, setCategory, userBlogData, setInput, input, 
         // formData.append("content", value)
         // console.log(formData)
 
-        dispatch(updateSingleBlogsApi(userBlogData?._id, title, value))
-        router.push("/")
+        dispatch(updateSingleBlogsApi({ id: updateBlogDetails?._id, title, value }))
         setInput({ title: "" })
         setValue("")
+        // router.push("/")
+        window.location.reload()
     }
 
     const modules = {
@@ -132,7 +134,7 @@ const CreatePostForm = ({ category, setCategory, userBlogData, setInput, input, 
             <br />
             <br />
             {
-                userBlogData ?
+                updateBlogDetails?._id ?
                     <button className="bg-indigo-500 p-2 text-white"
                         onClick={saveUpdateBlog}
                     >
@@ -142,7 +144,7 @@ const CreatePostForm = ({ category, setCategory, userBlogData, setInput, input, 
                     :
                     <>
                         {
-                            loading ?
+                            status === "success" ?
                                 <button className="bg-indigo-500 p-2 text-white"
                                     onClick={handleSubmit}
                                 >

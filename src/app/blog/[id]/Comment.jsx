@@ -2,21 +2,25 @@
 import React, { useEffect, useState } from 'react'
 import style from './blogScreen.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { addCommentApi, addCommentToCurrentApi } from '@/app/redux/actions/commentActions'
+import { addCommentApi, addCommentToCurrentBlogApi } from '@/app/redux/slices/singleBlogSlice'
 
 const Comment = ({ blogDetails }) => {
-
     const dispatch = useDispatch()
-    const commentData = useSelector(state => state.comments)
+    const commentData = useSelector(state => state.singleBlog)
+    const { commentsData } = commentData
 
     const [title, setTitle] = useState('')
-    const [refresh, setRefresh] = useState(false)
 
+    if (typeof window !== "undefined") {
 
-    // const commentId = localStorage.getItem('commentId')
+        var commentId = localStorage.getItem('newCommentId') ? localStorage.getItem('newCommentId') : null
+    }
     useEffect(() => {
-        dispatch(addCommentToCurrentApi(blogDetails?._id, commentData?.comment?.newPost?._id))
-    }, [dispatch, blogDetails?._id, commentData?.comment?.newPost?._id, refresh])
+        dispatch(addCommentToCurrentBlogApi({ blogId: blogDetails?._id, commentId: commentId }))
+        setTimeout(() => {
+            localStorage.removeItem("newCommentId")
+        }, 5000)
+    }, [dispatch, blogDetails?._id, commentsData?.newPost?._id, blogDetails])
 
     const addComment = async (e) => {
         e.preventDefault()
@@ -26,7 +30,6 @@ const Comment = ({ blogDetails }) => {
         }
 
         dispatch(addCommentApi(title))
-        setRefresh(!refresh)
         setTitle("")
     }
 

@@ -5,29 +5,12 @@
 .header {
     display: flex;
     justify-content: center;
-    padding: 2rem;
-    background: #aa4728;
+    padding: 1rem;
+    background: #b06a55;
     color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    // box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
 
-    ul {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        justify-content: space-around;
-        width: 100%;
 
-        li {
-            list-style: none;
-            font-size: 1.3rem;
-        }
-
-        .login {
-            padding: 0.2rem 1rem;
-            background-color: #72fec1;
-            color: #000;
-        }
-    }
 
     .user_container {
         display: flex;
@@ -57,19 +40,9 @@
             background: #fff;
             width: max-content;
             font-size: 1rem;
-            text-transform: uppercase;
             border: 1px #72fec1 solid;
 
-            .a {
-                color: #000;
-                cursor: pointer;
-                text-decoration: none;
-            }
 
-            .logout {
-                cursor: pointer;
-                color: #000;
-            }
         }
 
 

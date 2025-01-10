@@ -1,26 +1,19 @@
 
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { BlogDetailsReducer, allBlogReducer, createBlogReducer, currentUserBlogsReducer, updateBlogsDataReducer, updateUserBlogsReducer } from './reducers/blogReducers'
-import { addCommentReducer, addCommentToCurrentBlogReducer } from './reducers/commentReducers'
-import { userLoginReducer } from './reducers/userReducers'
+import { configureStore } from "@reduxjs/toolkit";
+import postsSlice from "./slices/postsSlice";
+import singleBlogSlice from "./slices/singleBlogSlice";
+import userLoginSlice from "./slices/userLoginSlice";
+import blogFormSlice from "./slices/blogFormSlice";
+import currentUserBlogSlice from "./slices/currentUserBlogsSlice";
 
-const initialState = {
-}
-
-const reducer = combineReducers({
-    allBlogs: allBlogReducer,
-    singleBlog: BlogDetailsReducer,
-    comments: addCommentReducer,
-    currentComment: addCommentToCurrentBlogReducer,
-    newCreateBlog: createBlogReducer,
-    currentUser: userLoginReducer,
-    currentUserBlogs: currentUserBlogsReducer,
-    updateBlogData: updateBlogsDataReducer,
-    updatedBlog: updateUserBlogsReducer,
-
-
+const store = configureStore({
+    reducer: {
+        allBlogs: postsSlice,
+        singleBlog: singleBlogSlice,
+        currentUser: userLoginSlice,
+        newCreateBlog: blogFormSlice,
+        currentUserBlogs: currentUserBlogSlice
+    }
 })
 
-const store = configureStore({ reducer, initialState })
-
-export default store
+export default store;

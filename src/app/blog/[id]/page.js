@@ -4,16 +4,17 @@ import style from './blogScreen.module.scss'
 import { api } from '@/app/apiEndpoint'
 import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux';
-import { allBlogApi, singleBlogDetails } from '@/app/redux/actions/blogActions';
 import Comment from './Comment';
 import Link from 'next/link';
 import Skeleton from 'react-loading-skeleton'
 import SkeRecentBlog from './SkeRecentBlog'
+import { allBlogApi } from '@/app/redux/slices/postsSlice'
+import { singleBlogDetails } from '@/app/redux/slices/singleBlogSlice'
 
 const page = ({ params }) => {
     const id = params.id
-
     const dispatch = useDispatch()
+
     const blogDetail = useSelector(state => state.singleBlog)
     const { blogDetails, error } = blogDetail
 
@@ -24,15 +25,8 @@ const page = ({ params }) => {
 
     useEffect(() => {
         dispatch(allBlogApi())
-    }, [])
-
-
-
-    useEffect(() => {
         dispatch(singleBlogDetails(id))
-    }, [id, dispatch])
-
-
+    }, [id, dispatch, blogDetails?.comments])
 
 
     return (
@@ -47,7 +41,6 @@ const page = ({ params }) => {
                                     <Image src={`${api}/uploads/${blogDetails?.image}`} alt={blogDetails?.title} width={900} height={900} />
                                     :
                                     <Skeleton width={900} height={500} />
-
                             }
                             <div dangerouslySetInnerHTML={{ __html: blogDetails?.content } || { __html: <Skeleton count={10} /> }}
                                 className={style.content}
@@ -60,7 +53,7 @@ const page = ({ params }) => {
                 <div className={style.blog_right}>
 
                     <div className={style.blog_background}>
-                        <h2 className="font-semibold">Recent Posts</h2>
+                        <h2 className="font-semibold">Other Posts</h2>
                         {
                             loading ? <SkeRecentBlog cards={5} /> :
                                 <>
@@ -70,10 +63,10 @@ const page = ({ params }) => {
                                                 {blog?.map((item, idx) => {
                                                     return (
                                                         <Link href={`/blog/${item._id}`} className={style.post_container} key={idx}>
-                                                            <div>
-                                                                <Image src={`${api}/uploads/${item?.image}` || <Skeleton />} width={100} height={100} alt={item?.title} />
+                                                            <div className={style.other_post_img}>
+                                                                <Image src={`${api}/uploads/${item?.image}` || <Skeleton />} width={500} height={700} alt={item?.title} />
                                                             </div>
-                                                            <div>
+                                                            <div className='w-3/4'>
                                                                 <span>{item?.title || <Skeleton />}</span>
                                                             </div>
                                                         </Link>

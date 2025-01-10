@@ -1,4 +1,4 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
 
 .blog_page {
     display: flex;
@@ -15,22 +15,24 @@
         letter-spacing: 1px;
         font-weight: 500;
         border-radius: 23px;
+        padding: 0.6rem;
+        padding-left: 12px;
+        width: 90%;
         margin-bottom: 1rem;
-        padding: .7rem;
-        width: 50%;
-        margin-bottom: 3rem;
-    }
+        font-size: 12px;
 
+        @media only screen and (min-width:768px) {
+            width: 50%;
+        }
+    }
 
     .blog_page_container {
         transition: all 350ms;
-        width: 80%;
+        width: 100%;
         padding: 1rem;
         display: grid;
-        // place-items: start;
         gap: 1rem;
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
-
 
         .link_blog {
             color: #fff;
@@ -43,7 +45,7 @@
 
             .img_container {
                 width: 100%;
-                height: 20vh;
+                height: 30vh;
 
                 .img {
                     width: 100%;
@@ -58,41 +60,43 @@
                 display: grid;
                 gap: 1rem;
                 width: 100%;
-                padding: 1rem .7rem;
+                padding: 1rem 0.7rem;
                 font-size: 1rem;
                 color: #000;
                 font-weight: 600;
             }
-
         }
 
+        @media screen and (min-width: 768px) {
+            grid-template-columns: repeat(auto-fit, minmax(min(30%, 400px), 1fr));
+            width: 80%;
+        }
     }
 
     .skeleton_card_container {
-        padding: 1rem;
-        display: grid;
+        display: flex;
+        justify-content: center;
         gap: 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
         width: 100%;
-
+        flex-wrap: wrap;
 
         .skeleton_card {
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-            width: 100%;
+            display: grid;
 
             .skeleton_img {
                 width: 100%;
-                height: 20vh;
             }
 
             .skeleton_title {
                 display: grid;
-                gap: 1rem;
+                gap: .7rem;
                 width: 95%;
-                padding: 1rem 0;
             }
+        }
+
+        @media screen and (min-width: 768px) {
+            width: 100%;
+            flex-wrap: nowrap;
         }
     }
 }

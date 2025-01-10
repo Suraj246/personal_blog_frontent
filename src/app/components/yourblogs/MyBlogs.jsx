@@ -1,35 +1,38 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { api } from '@/app/apiEndpoint'
 import Image from 'next/image'
 import style from './yourblogs.module.scss'
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
-import { currentUserBlogsApi, deleteBlogsApi, updateUserBlogsApi } from '@/app/redux/actions/blogActions';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'
+import { currentUserBlogsApi, deleteBlogsApi, updateBlogDetails } from '@/app/redux/slices/currentUserBlogsSlice'
 
 
 const MyBlogs = () => {
     const router = useRouter()
-    const [refresh, setRefresh] = useState(false)
     const dispatch = useDispatch()
     const userBlogsData = useSelector(state => state.currentUserBlogs)
     const { userBlogs, error } = userBlogsData
+
+    //getting current user id
     const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : []
     var userId = userData?.userId
 
+    // access current user blogs
     useEffect(() => {
         dispatch(currentUserBlogsApi(userId))
-    }, [dispatch, userId, refresh])
+    }, [dispatch, userId, userBlogs])
 
-
+    // delete blog
     const deleteBlog = (idx) => {
-        setRefresh(!refresh)
-        dispatch(deleteBlogsApi(userId, idx))
+        dispatch(deleteBlogsApi({ userId, idx }))
     }
+
+    // receiving update blog details
     const updateBlog = (item) => {
-        dispatch(updateUserBlogsApi(item))
+        dispatch(updateBlogDetails(item))
         router.push("/create-post")
     }
 

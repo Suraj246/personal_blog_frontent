@@ -8,10 +8,10 @@
 
     .middle_container {
         display: flex;
-        padding: 3rem;
 
-        @media(max-width:1000px) {
-            flex-wrap: wrap;
+        @media(min-width:868px) {
+            // flex-wrap: wrap;
+            padding: 3rem;
         }
     }
 
@@ -89,6 +89,7 @@
 
                 .btn {
                     padding: 0 1rem;
+                    font-size: 13px;
                     background-color: rgb(55, 55, 81);
                     color: white;
                     border: transparent;
@@ -134,8 +135,7 @@
         width: 40%;
         background-color: #fff;
         padding: 1rem;
-
-
+        display: none;
 
         .ske_post_container {
             display: flex;
@@ -164,16 +164,24 @@
                 gap: 1rem;
                 align-items: center;
                 background-color: #fff;
+                height: 80px;
+
+
+                .other_post_img {
+                    width: 100px;
+                    height: fit-content;
+                }
 
                 img {
-                    width: 6vw;
-                    height: 7vh;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
                 }
             }
         }
 
-        @media(max-width:1000px) {
-            width: 100%;
+        @media(min-width:768px) {
+            display: block;
         }
     }
 

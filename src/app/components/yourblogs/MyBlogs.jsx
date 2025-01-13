@@ -14,7 +14,7 @@ const MyBlogs = () => {
     const router = useRouter()
     const dispatch = useDispatch()
     const userBlogsData = useSelector(state => state.currentUserBlogs)
-    const { userBlogs, error } = userBlogsData
+    const { userBlogs, status, error } = userBlogsData
 
     //getting current user id
     const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : []
@@ -38,7 +38,7 @@ const MyBlogs = () => {
 
     return (
         <div className={style.user_blogs}>
-            {error ? <span className='text-2xl capitalize text-center'>{error}</span> :
+            {status === "" ? <span className='capitalize text-right w-100'>loading...</span> : error ? <span className='text-2xl capitalize text-center'>{error}</span> :
                 userBlogs?.data?.blogs?.map((elem, idx) => {
                     return (
                         <div className={style.user_blog_container} key={idx}>

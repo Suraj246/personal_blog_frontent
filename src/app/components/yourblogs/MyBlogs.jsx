@@ -15,7 +15,7 @@ const MyBlogs = () => {
     const dispatch = useDispatch()
     const userBlogsData = useSelector(state => state.currentUserBlogs)
     const { userBlogs, status, error } = userBlogsData
-
+    console.log(userBlogs)
     //getting current user id
     const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : []
     var userId = userData?.userId
@@ -23,7 +23,7 @@ const MyBlogs = () => {
     // access current user blogs
     useEffect(() => {
         dispatch(currentUserBlogsApi(userId))
-    }, [dispatch, userId, userBlogs])
+    }, [dispatch, userId])
 
     // delete blog
     const deleteBlog = (idx) => {

@@ -16,7 +16,7 @@ const HomeBlogs = () => {
     const dispatch = useDispatch()
 
     const allBlogs = useSelector(state => state.allBlogs)
-    const { allPosts, loading, error } = allBlogs
+    const { allPosts, status, error } = allBlogs
     const [blog, setBlog] = useState([])
 
     const postsArray = []
@@ -47,7 +47,7 @@ const HomeBlogs = () => {
 
                     // displaying all posts
                     <>
-                        {loading ? <SkeletonBlog cards={3} /> : error ? <span className='text-2xl capitalize text-center'>{error}</span> :
+                        {status === "loading" ? <SkeletonBlog cards={3} /> : error ? <span className='text-2xl capitalize text-center'>{error}</span> :
 
                             <>
                                 {postsArray?.filter((elem) => {

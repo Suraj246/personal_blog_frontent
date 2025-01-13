@@ -75,7 +75,8 @@ const HomeBlogs = () => {
                                                 </div>
                                             </Link>
                                         )
-                                    })}
+                                    })
+                                }
                             </>
                         }
                     </>

@@ -39,25 +39,31 @@ const MyBlogs = () => {
     return (
         <div className={style.user_blogs}>
             {status === "loading" ? <span className='capitalize text-right w-100'>loading...</span> : error ? <span className='text-2xl capitalize text-center'>{error}</span> :
-                userBlogs?.data?.blogs?.map((elem, idx) => {
-                    return (
-                        <div className={style.user_blog_container} key={idx}>
-                            <Link href={`/blog/${elem._id}`} >
-                                <Image src={`${api}/uploads/${elem?.image}`} alt={elem?.title}
-                                    width={200} height={200}
-                                />
-                            </Link>
-                            <div className={style.title_container}>
-                                <span>{elem?.title}</span>
-                                <span>{elem?.createdAt.slice(0, 10)}</span>
-                            </div>
-                            <div className={style.edit_delete_container}>
-                                <span onClick={() => updateBlog(elem)}>edit</span>
-                                <span onClick={() => deleteBlog(idx)}>delete</span>
-                            </div>
-                        </div>
-                    )
-                })}
+                <>
+                    {
+                        userBlogs?.data?.blogs?.map((elem, idx) => {
+                            return (
+                                <div className={style.user_blog_container} key={idx}>
+                                    <Link href={`/blog/${elem._id}`} >
+                                        <Image src={`${api}/uploads/${elem?.image}`} alt={elem?.title}
+                                            width={200} height={200}
+                                        />
+                                    </Link>
+                                    <div className={style.title_container}>
+                                        <span>{elem?.title}</span>
+                                        <span>{elem?.createdAt.slice(0, 10)}</span>
+                                    </div>
+                                    <div className={style.edit_delete_container}>
+                                        <span onClick={() => updateBlog(elem)}>edit</span>
+                                        <span onClick={() => deleteBlog(idx)}>delete</span>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </>
+
+            }
         </div>
     )
 }

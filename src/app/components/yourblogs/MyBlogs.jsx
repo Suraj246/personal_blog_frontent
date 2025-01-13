@@ -38,7 +38,8 @@ const MyBlogs = () => {
 
     return (
         <div className={style.user_blogs}>
-            {status === "loading" ? <span className='capitalize text-right w-100'>loading...</span> : error ? <span className='text-2xl capitalize text-center'>{error}</span> :
+            {error && <span className='text-2xl capitalize text-center'>{error}</span>}
+            {status === "loading" ? <span className='capitalize text-right w-100'>loading...</span> :
                 <>
                     {
                         userBlogs?.data?.blogs?.map((elem, idx) => {

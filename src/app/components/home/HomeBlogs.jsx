@@ -25,7 +25,7 @@ const HomeBlogs = () => {
 
     useEffect(() => {
         dispatch(allBlogApi())
-    }, [])
+    }, [dispatch])
 
 
     // storing searched post in blog state
@@ -71,7 +71,7 @@ const HomeBlogs = () => {
 
                                                 </div>
                                                 <div className={style.title_container}>
-                                                    <span className={style.category}>{item?.category}</span>
+                                                    <span className='capitalize'>{item?.category}</span>
                                                     <span className={style.title}>{item?.title}</span>
                                                     <div dangerouslySetInnerHTML={{ __html: item?.content.slice(0, 100) }}
                                                         className={style.content}

@@ -36,6 +36,16 @@ const Create_Post = () => {
         setInput({ ...input, [name]: value })
     }
 
+
+    // if (typeof window !== "undefined") {
+
+    //     var blogId = localStorage.getItem('blogId') ? localStorage.getItem('blogId') : createdBlog?.newPost?._id
+    // }
+
+
+    const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : []
+    var userId = userData?.userId
+
     // crating blog
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -52,6 +62,18 @@ const Create_Post = () => {
         }
 
         dispatch(createBlogApi({ formData }))
+            .then((res) => {
+                // console.log("success", res?.payload?.newPost?._id);
+                const blogId = res?.payload?.newPost?._id
+                if (res) {
+                    axios.post(`${api}/user/blog/store-post-to-each-user`, {
+                        userId, blogId
+                    })
+                        .then((res) => { console.log(res); })
+                        .catch((err) => { return err })
+
+                }
+            })
         setInput({ title: "" })
         setImage("")
         setContent("")
@@ -60,23 +82,16 @@ const Create_Post = () => {
         // window.location.reload()
     };
 
-    if (typeof window !== "undefined") {
 
-        var blogId = localStorage.getItem('blogId') ? localStorage.getItem('blogId') : createdBlog?.newPost?._id
-    }
-
-
-    const userData = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : []
-    var userId = userData?.userId
 
     // storing post to the current user
-    useEffect(() => {
-        axios.post(`${api}/user/blog/store-post-to-each-user`, {
-            userId, blogId
-        })
-            .then((res) => { console.log(res); })
-            .catch((err) => { return err })
-    }, [userId, blogId]);
+    // useEffect(() => {
+    //     axios.post(`${api}/user/blog/store-post-to-each-user`, {
+    //         userId, blogId
+    //     })
+    //         .then((res) => { console.log(res); })
+    //         .catch((err) => { return err })
+    // }, [userId, blogId]);
 
     return (
         <div className={style.create_blog_page}>

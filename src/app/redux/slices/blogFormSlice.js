@@ -13,7 +13,7 @@ export const createBlogApi = createAsyncThunk("createdBlog/createBlogApi", async
     localStorage.setItem('blogId', data?.newPost?._id)
     setTimeout(() => {
         localStorage.removeItem('blogId')
-    }, 10000)
+    }, 60000)
     return data
 })
 

@@ -16,6 +16,7 @@ export const currentUserBlogsApi = createAsyncThunk("userBlogs/currentUserBlogsA
 
 export const deleteBlogsApi = createAsyncThunk("userBlogs/deleteBlogsApi", async ({ userId, idx }) => {
     const { data } = await axios.delete(`${api}/user/blog/${userId}/${idx}`)
+    console.log(data)
     return data
 })
 

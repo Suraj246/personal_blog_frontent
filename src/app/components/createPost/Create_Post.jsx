@@ -14,7 +14,8 @@ const Create_Post = () => {
     const router = useRouter()
 
     const createdBlogs = useSelector(state => state.newCreateBlog)
-    const { status, error } = createdBlogs
+    const { status, createdBlog, error } = createdBlogs
+    // console.log("createdBlog", createdBlog?.newPost?._id)
 
     // receiving update blog details
     const updateBlogDataRequest = useSelector(state => state.currentUserBlogs)
@@ -61,7 +62,7 @@ const Create_Post = () => {
 
     if (typeof window !== "undefined") {
 
-        var blogId = localStorage.getItem('blogId') ? localStorage.getItem('blogId') : null
+        var blogId = localStorage.getItem('blogId') ? localStorage.getItem('blogId') : createdBlog?.newPost?._id
     }
 
 
@@ -73,7 +74,7 @@ const Create_Post = () => {
         axios.post(`${api}/user/blog/store-post-to-each-user`, {
             userId, blogId
         })
-            .then((res) => { return res })
+            .then((res) => { console.log(res); })
             .catch((err) => { return err })
     }, [userId, blogId]);
 

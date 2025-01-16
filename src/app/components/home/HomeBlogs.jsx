@@ -13,6 +13,7 @@ import { api } from '@/app/apiEndpoint';
 
 const HomeBlogs = () => {
     const [input, setInput] = useState('')
+
     const dispatch = useDispatch()
 
     const allBlogs = useSelector(state => state.allBlogs)
@@ -61,10 +62,13 @@ const HomeBlogs = () => {
                                     }
                                 })
                                     .map((item, id) => {
+                                        console.log(`${api}/uploads/${item?.image}`)
                                         return (
                                             <Link href={`/blog/${item?._id}`} className={style.link_blog} key={id}>
                                                 <div className={style.img_container}>
-                                                    <Image src={`${api}/uploads/${item?.image}`} className={style.img} alt={item?.title} width={700} height={300} />
+                                                    <Image src={`${api}/uploads/${item?.image}`} className={style.img} alt={item?.title} width={700} height={300}
+                                                    />
+
                                                 </div>
                                                 <div className={style.title_container}>
                                                     <span className={style.category}>{item?.category}</span>

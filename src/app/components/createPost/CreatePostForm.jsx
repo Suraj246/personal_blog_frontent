@@ -36,8 +36,8 @@ const CreatePostForm = ({ category, setCategory, updateBlogDetails, setInput, in
         dispatch(updateSingleBlogsApi({ id: updateBlogDetails?._id, title, value }))
         setInput({ title: "" })
         setValue("")
-        // router.push("/")
-        window.location.reload()
+        router.push("/")
+        // window.location.reload()
     }
 
     const modules = {

@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import style from './home.module.scss'
 import Image from 'next/image'
 import { api } from '@/app/apiEndpoint'

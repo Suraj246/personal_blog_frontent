@@ -3,7 +3,7 @@
 import { api } from '@/app/apiEndpoint'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import style from './home.module.scss'
 
 const SearchedPost = ({ item }) => {

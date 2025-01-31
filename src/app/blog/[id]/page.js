@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './blogScreen.module.scss'
 import { api } from '@/app/apiEndpoint'
 import Image from 'next/image'

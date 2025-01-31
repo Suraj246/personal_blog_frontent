@@ -9,7 +9,7 @@ const OtherPosts = ({ item }) => {
   const [imgSrc, setImgSrc] = useState(`${api}/uploads/${item?.image}`);
 
   return (
-    <Link href={`/blog/${item._id}`} className={style.post_container} key={idx}>
+    <Link href={`/blog/${item._id}`} className={style.post_container} >
       <div className={style.other_post_img}>
         <Image src={imgSrc || <Skeleton />} width={500} height={700} alt={item?.title}
           onError={() => setImgSrc('/image_not_found.webp')}

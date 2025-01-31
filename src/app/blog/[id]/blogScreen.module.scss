@@ -173,7 +173,8 @@
 
                 .other_post_img {
                     width: 100px;
-                    height: fit-content;
+                    height: 50px;
+                    object-fit: contain;
                 }
 
                 img {

@@ -11,7 +11,7 @@ const SearchedPost = ({ item }) => {
 
     return (
         <div>
-            <Link href={`/blog/${item?._id}`} className={style.link_blog} key={id}>
+            <Link href={`/blog/${item?._id}`} className={style.link_blog} >
                 <div className={style.img_container}>
                     <Image src={imgSrc} className={style.img} alt={item?.title} width={700} height={100}
                         onError={() => setImgSrc('/image_not_found.webp')}

@@ -5,11 +5,11 @@ import { api } from '@/app/apiEndpoint'
 import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux';
 import Comment from './Comment';
-import Link from 'next/link';
 import Skeleton from 'react-loading-skeleton'
 import SkeRecentBlog from './SkeRecentBlog'
 import { allBlogApi } from '@/app/redux/slices/postsSlice'
 import { singleBlogDetails } from '@/app/redux/slices/singleBlogSlice'
+import OtherPosts from './OtherPosts'
 
 const page = ({ params }) => {
     const id = params.id
@@ -17,6 +17,7 @@ const page = ({ params }) => {
 
     const blogDetail = useSelector(state => state.singleBlog)
     const { blogDetails, error } = blogDetail
+    const [imgSrc, setImgSrc] = useState(`${api}/uploads/${blogDetails?.image}`);
 
     const allBlogs = useSelector(state => state.allBlogs)
     const { allPosts, loading } = allBlogs
@@ -38,7 +39,9 @@ const page = ({ params }) => {
                             <span className={style.title}>{blogDetails?.title || <Skeleton count={2} />}</span>
                             {
                                 blogDetails?.image ?
-                                    <Image src={`${api}/uploads/${blogDetails?.image}`} alt={blogDetails?.title} width={900} height={900} />
+                                    <Image src={imgSrc} alt={blogDetails?.title} width={900} height={900}
+                                        onError={() => setImgSrc('/image_not_found.webp')}
+                                    />
                                     :
                                     <Skeleton width={900} height={500} />
                             }
@@ -62,14 +65,7 @@ const page = ({ params }) => {
                                             <div key={id} className={style.inside_div}>
                                                 {blog?.map((item, idx) => {
                                                     return (
-                                                        <Link href={`/blog/${item._id}`} className={style.post_container} key={idx}>
-                                                            <div className={style.other_post_img}>
-                                                                <Image src={`${api}/uploads/${item?.image}` || <Skeleton />} width={500} height={700} alt={item?.title} />
-                                                            </div>
-                                                            <div className='w-3/4'>
-                                                                <span>{item?.title || <Skeleton />}</span>
-                                                            </div>
-                                                        </Link>
+                                                        <OtherPosts item={item} key={idx} />
                                                     )
                                                 })}
                                             </div>

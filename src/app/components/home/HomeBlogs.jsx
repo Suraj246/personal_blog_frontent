@@ -67,6 +67,7 @@ const HomeBlogs = () => {
                                             <Link href={`/blog/${item?._id}`} className={style.link_blog} key={id}>
                                                 <div className={style.img_container}>
                                                     <Image src={`${api}/uploads/${item?.image}`} className={style.img} alt={item?.title} width={700} height={300}
+                                                        onError={(e) => e.target.src = '/image_not_found.webp'}
                                                     />
 
                                                 </div>

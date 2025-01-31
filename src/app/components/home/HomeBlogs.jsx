@@ -5,17 +5,16 @@ import Search from './Search';
 
 import { useDispatch, useSelector } from 'react-redux'
 import { allBlogApi } from '../../redux/slices/postsSlice'
-import Image from 'next/image';
-import Link from 'next/link';
+
 import SkeletonBlog from './SkeletonBlog';
 import { api } from '@/app/apiEndpoint';
+import BlogCard from './BlogCard';
+import SearchedPost from './SearchedPost';
 
 
 const HomeBlogs = () => {
     const [input, setInput] = useState('')
-    // i am storing image path in state because i want to change src path when real image fails to load 
-    // in nextjs src cannot be modified directly
-    const [imgSrc, setImgSrc] = useState(`${api}/uploads/${item?.image}`);
+
 
     const dispatch = useDispatch()
 
@@ -67,21 +66,7 @@ const HomeBlogs = () => {
                                     .map((item, id) => {
                                         console.log(`${api}/uploads/${item?.image}`)
                                         return (
-                                            <Link href={`/blog/${item?._id}`} className={style.link_blog} key={id}>
-                                                <div className={style.img_container}>
-                                                    <Image src={imgSrc} className={style.img} alt={item?.title} width={700} height={300}
-                                                        onError={() => setImgSrc('/image_not_found.webp')}
-                                                    />
-
-                                                </div>
-                                                <div className={style.title_container}>
-                                                    <span className='capitalize'>{item?.category}</span>
-                                                    <span className={style.title}>{item?.title}</span>
-                                                    <div dangerouslySetInnerHTML={{ __html: item?.content.slice(0, 100) }}
-                                                        className={style.content}
-                                                    />...
-                                                </div>
-                                            </Link>
+                                            <BlogCard item={item} key={id} />
                                         )
                                     })
                                 }
@@ -94,18 +79,7 @@ const HomeBlogs = () => {
                     <>
                         {blog?.map((item, id) => {
                             return (
-                                <Link href={`/blog/${item?._id}`} className={style.link_blog} key={id}>
-                                    <div className={style.img_container}>
-                                        <Image src={`${api}/uploads/${item?.image}`} className={style.img} alt={item?.title} width={700} height={100} />
-                                    </div>
-                                    <div className={style.title_container}>
-                                        <span className={style.category}>{item?.category}</span>
-                                        <span className={style.title}>{item?.title}</span>
-                                        <div dangerouslySetInnerHTML={{ __html: item?.content.slice(0, 100) }}
-                                            className={style.content}
-                                        />...
-                                    </div>
-                                </Link>
+                                <SearchedPost item={item} key={id} />
                             )
                         })}
 

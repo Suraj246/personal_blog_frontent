@@ -4,6 +4,7 @@ import style from './createPost.module.scss'
 import dynamic from 'next/dynamic';
 // import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+// import "react-quill/dist/quill.snow.css";
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { updateSingleBlogsApi } from '@/app/redux/slices/blogFormSlice';
@@ -19,7 +20,6 @@ const ReactQuill = dynamic(
 const CreatePostForm = ({ category, setCategory, updateBlogDetails, setInput, input, value, setValue, inputHandler, handleSubmit, setImage, status }) => {
     const router = useRouter()
     const dispatch = useDispatch()
-    console.log(updateBlogDetails?._id)
     const [isActive, setIsActive] = useState(false)
     const unique = ["react", "nextjs", "nodejs", "css"]
 

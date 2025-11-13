@@ -9,19 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.7",
+    "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.4.0",
-    "eslint": "8.40.0",
-    "eslint-config-next": "13.4.2",
+    "eslint": "^9.31.0",
+    "eslint-config-next": "^15.4.2",
     "js-cookie": "^3.0.5",
-    "next": "13.4.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "next": "^15.4.2",
+    "quill": "^2.0.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-loading-skeleton": "^3.3.1",
     "react-quill": "^2.0.0",
-    "react-redux": "^8.0.7"
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
+    "@types/page": "^1.11.9",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.24",
     "sass": "^1.62.1",
